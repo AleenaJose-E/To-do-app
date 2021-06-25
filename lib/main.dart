@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:task_to_do/todo_model.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  final document = await getApplicationDocumentsDirectory();
+  Hive.init( document.path);
+  Hive.openBox <TodoModel>();
+  runApp(MyApp());
+}
 
 
 class MyApp extends StatelessWidget {
